@@ -6,9 +6,10 @@ $suspectMethods = array(
     "/array_merge\(/" => "array_merge"
 );
 
-$modifiedFilesCommand = "svn status | grep ^M | awk '{print $2;}'";
-$output = shell_exec($modifiedFilesCommand);
-$output = explode("\n", $output);
+$modifiedFiles = getFiles('M');
+$addedFiles = getFiles('A');
+
+$output = array_merge($modifiedFiles, $addedFiles);
 
 $currentDir = dirname ( __FILE__ ); 
 
@@ -38,6 +39,13 @@ foreach ($output as $line) {
             }
         }
     }
+}
+
+function getFiles($char) {
+    $modifiedFilesCommand = "svn status | grep ^$char | awk '{print $2;}'";
+    $output = shell_exec($modifiedFilesCommand);
+    $output = explode("\n", $output);
+    return $output;
 }
 
 ?>
