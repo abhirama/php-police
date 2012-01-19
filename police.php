@@ -42,8 +42,8 @@ foreach ($output as $line) {
 }
 
 function getFiles($char) {
-    $modifiedFilesCommand = "svn status | grep ^$char | awk '{print $2;}'";
-    $output = shell_exec($modifiedFilesCommand);
+    $command = "svn status | grep ^$char | awk '{print $2;}'";
+    $output = shell_exec($command);
     $output = explode("\n", $output);
     return $output;
 }
