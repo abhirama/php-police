@@ -2,7 +2,7 @@
 
 $suspectMethods = array(
     "/in_array\(/" => "in_array",
-    "/array_key_exists\(/" => "array_search",
+    "/array_search\(/" => "array_search",
     "/array_merge\(/" => "array_merge"
 );
 
